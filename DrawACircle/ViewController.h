@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @class DoodleView;
+@class CircleView;
 
 @interface ViewController : UIViewController
 
+
+@property (strong, nonatomic) CircleView* circleView;
 @property (strong, nonatomic) DoodleView* doodleView;
 
 @end

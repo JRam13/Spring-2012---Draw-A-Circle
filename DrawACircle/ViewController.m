@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "CircleGestureRecognizer.h"
 #import "DoodleView.h"
+#import "CircleView.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface ViewController ()
 
@@ -21,14 +23,37 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //Load Circle view
+    CGRect window = [[UIScreen mainScreen] bounds];
+    self.circleView = [[CircleView alloc] initWithFrame:window];
 
     // Load the doodle view
-    CGRect window = [[UIScreen mainScreen] bounds];
+    window = [[UIScreen mainScreen] bounds];
     self.doodleView = [[DoodleView alloc] initWithFrame:window];
     
     CircleGestureRecognizer *recognizer = [[CircleGestureRecognizer alloc] initWithTarget:self action:@selector(handleCircleRecognizer:)]; 
 	[self.doodleView addGestureRecognizer:recognizer];
     [self.view addSubview:self.doodleView];
+    [self.view addSubview:self.circleView];
+    
+    //Add info button
+    UIButton *infoBut = [UIButton buttonWithType:UIButtonTypeInfoDark];
+    [infoBut addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.doodleView addSubview:infoBut];
+    
+    
+}
+
+-(void)soundEffects:(id)blah
+{
+    NSString *sndPath = [[NSBundle mainBundle] pathForResource:@"BUZZER" ofType:@"wav"];
+    NSURL *sndURL = [NSURL fileURLWithPath:sndPath];
+    SystemSoundID soundID;
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)sndURL, &soundID);
+    AudioServicesAddSystemSoundCompletion(soundID, NULL, NULL, NULL, NULL);
+    AudioServicesPlaySystemSound(soundID);
+    
 }
 
 - (void)viewDidUnload {
@@ -59,7 +84,13 @@
  *******************************************************************************/
 - (void) handleCircleRecognizer:(UIGestureRecognizer *) recognizer
 {
-	NSLog(@"Circle recognized");
+	UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Circle Recognizer"
+                                                      message:@"Circle has been recognized, good job!"
+                                                     delegate:nil
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+    [message show];
+    [self.doodleView setPathColor:[UIColor redColor]];
 }
 
 
@@ -99,4 +130,14 @@
 }
 - (void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event {}
 
+-(IBAction)buttonClicked:(id)sender
+{
+    UIActionSheet *info = [[UIActionSheet alloc] initWithTitle:@"Instructions: Trace the circle as best as you can! Shake to erase."
+                                                      delegate:nil
+                                             cancelButtonTitle:@"Ok"
+                                        destructiveButtonTitle:nil
+                                             otherButtonTitles:nil, nil];
+    [info showInView:self.view];
+
+}
 @end

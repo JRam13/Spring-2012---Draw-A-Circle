@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
-@interface DoodleView : UIView
+@interface DoodleView : UIView <UIImagePickerControllerDelegate>
 
 @property (assign) CGPoint firstTouch;
 @property (assign) CGPoint lastTouch;
 @property (strong, nonatomic) UIBezierPath *path;
+@property (strong, nonatomic) NSMutableArray *paths;
+@property (strong, nonatomic) UIColor *pathColor;
+
 
 - (void) clear;
 

@@ -7,11 +7,15 @@
 //
 
 #import "CircleGestureRecognizer.h"
+//Import sounds
+#import <AudioToolbox/AudioToolbox.h>
+#import "ViewController.h"
 
 @implementation CircleGestureRecognizer
 
 @synthesize points;
 @synthesize firstTouchDate;
+@class ViewController;
 
 #define DEBUG 1
 
@@ -73,8 +77,10 @@
 	BOOL detectionSuccess = !CGRectEqualToRect(CGRectZero, testForCircle(points, firstTouchDate));
 	if (detectionSuccess)
 		self.state = UIGestureRecognizerStateRecognized;
-	else
+	else{
 		self.state = UIGestureRecognizerStateFailed;
+        [self soundEffects];
+    }
 }
 
 
@@ -132,19 +138,34 @@ CGRect boundingRect(NSArray *points)
 CGRect testForCircle(NSArray *points, NSDate *firstTouchDate)
 {
 	if (points.count < 2) {
-		if (DEBUG) NSLog(@"Too few points (2) for circle");
+		if (DEBUG) //NSLog(@"Too few points (2) for circle");
+        
+        
 		return CGRectZero;
 	}
     
 	// The start and end points must be between some number of points of each other
-	float tolerance = [[[UIApplication sharedApplication] keyWindow] bounds].size.width / 3.0f;	
+	float tolerance = [[[UIApplication sharedApplication] keyWindow] bounds].size.width / 15.0f;
 	if (distance(POINT(0), POINT(points.count - 1)) > tolerance) {
-		if (DEBUG) NSLog(@"Start and end points too far apart. Fail.");
+		if (DEBUG) //NSLog(@"Start and end points too far apart. Fail.");
 		return CGRectZero;
 	}
 	CGRect circle = boundingRect(points); 
 	//CGPoint center = getRectCenter(circle);
 	return circle;
 }
+
+-(void)soundEffects
+{
+    NSString *sndPath = [[NSBundle mainBundle] pathForResource:@"BUZZER" ofType:@"wav"];
+    NSURL *sndURL = [NSURL fileURLWithPath:sndPath];
+    SystemSoundID soundID;
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)sndURL, &soundID);
+    AudioServicesAddSystemSoundCompletion(soundID, NULL, NULL, NULL, NULL);
+    AudioServicesPlaySystemSound(soundID);
+    
+}
+
+
 
 @end

@@ -20,6 +20,7 @@
 @property (strong, nonatomic) NSDate *firstTouchDate;
 @property (strong, nonatomic) NSMutableArray *points;
 
+
 float distance (CGPoint p1, CGPoint p2);
 CGRect boundingRect(NSArray *points);
 CGPoint getRectCenter(CGRect rect);

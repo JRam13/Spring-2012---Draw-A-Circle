@@ -17,6 +17,10 @@
 		37CB2FE715547C790041E00B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CB2FE615547C790041E00B /* ViewController.m */; };
 		37CB2FF315547C9D0041E00B /* DoodleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CB2FF215547C9D0041E00B /* DoodleView.m */; };
 		37CB2FF715547DA20041E00B /* CircleGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CB2FF615547DA20041E00B /* CircleGestureRecognizer.m */; };
+		5207C8EF16D48A0900F14850 /* CircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5207C8EE16D48A0900F14850 /* CircleView.m */; };
+		5224458116D5554A005B8452 /* BUZZER.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5224458016D5554A005B8452 /* BUZZER.wav */; };
+		5224458416D555BD005B8452 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5224458316D555BD005B8452 /* AudioToolbox.framework */; };
+		52D53D6016D6F7E9004EFAA3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D53D5F16D6F7E9004EFAA3 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +41,11 @@
 		37CB2FF215547C9D0041E00B /* DoodleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoodleView.m; sourceTree = "<group>"; };
 		37CB2FF515547DA20041E00B /* CircleGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleGestureRecognizer.h; sourceTree = "<group>"; };
 		37CB2FF615547DA20041E00B /* CircleGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleGestureRecognizer.m; sourceTree = "<group>"; };
+		5207C8ED16D48A0900F14850 /* CircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleView.h; sourceTree = "<group>"; };
+		5207C8EE16D48A0900F14850 /* CircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleView.m; sourceTree = "<group>"; };
+		5224458016D5554A005B8452 /* BUZZER.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = BUZZER.wav; sourceTree = "<group>"; };
+		5224458316D555BD005B8452 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		52D53D5F16D6F7E9004EFAA3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +53,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52D53D6016D6F7E9004EFAA3 /* QuartzCore.framework in Frameworks */,
+				5224458416D555BD005B8452 /* AudioToolbox.framework in Frameworks */,
 				37CB2FD115547C790041E00B /* UIKit.framework in Frameworks */,
 				37CB2FD315547C790041E00B /* Foundation.framework in Frameworks */,
 				37CB2FD515547C790041E00B /* CoreGraphics.framework in Frameworks */,
@@ -73,6 +84,8 @@
 		37CB2FCF15547C790041E00B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				52D53D5F16D6F7E9004EFAA3 /* QuartzCore.framework */,
+				5224458316D555BD005B8452 /* AudioToolbox.framework */,
 				37CB2FD015547C790041E00B /* UIKit.framework */,
 				37CB2FD215547C790041E00B /* Foundation.framework */,
 				37CB2FD415547C790041E00B /* CoreGraphics.framework */,
@@ -86,12 +99,15 @@
 				37CB2FDF15547C790041E00B /* AppDelegate.h */,
 				37CB2FE015547C790041E00B /* AppDelegate.m */,
 				37CB2FE215547C790041E00B /* MainStoryboard.storyboard */,
+				5207C8ED16D48A0900F14850 /* CircleView.h */,
+				5207C8EE16D48A0900F14850 /* CircleView.m */,
 				37CB2FE515547C790041E00B /* ViewController.h */,
 				37CB2FE615547C790041E00B /* ViewController.m */,
 				37CB2FF115547C9D0041E00B /* DoodleView.h */,
 				37CB2FF215547C9D0041E00B /* DoodleView.m */,
 				37CB2FF515547DA20041E00B /* CircleGestureRecognizer.h */,
 				37CB2FF615547DA20041E00B /* CircleGestureRecognizer.m */,
+				5224458016D5554A005B8452 /* BUZZER.wav */,
 				37CB2FD715547C790041E00B /* Supporting Files */,
 			);
 			path = DrawACircle;
@@ -161,6 +177,7 @@
 			files = (
 				37CB2FDB15547C790041E00B /* InfoPlist.strings in Resources */,
 				37CB2FE415547C790041E00B /* MainStoryboard.storyboard in Resources */,
+				5224458116D5554A005B8452 /* BUZZER.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +193,7 @@
 				37CB2FE715547C790041E00B /* ViewController.m in Sources */,
 				37CB2FF315547C9D0041E00B /* DoodleView.m in Sources */,
 				37CB2FF715547DA20041E00B /* CircleGestureRecognizer.m in Sources */,
+				5207C8EF16D48A0900F14850 /* CircleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
