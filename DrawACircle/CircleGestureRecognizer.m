@@ -77,6 +77,7 @@
 	BOOL detectionSuccess = !CGRectEqualToRect(CGRectZero, testForCircle(points, firstTouchDate));
 	if (detectionSuccess)
 		self.state = UIGestureRecognizerStateRecognized;
+    
 	else{
 		self.state = UIGestureRecognizerStateFailed;
         [self soundEffects];

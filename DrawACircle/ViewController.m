@@ -90,7 +90,8 @@
                                             cancelButtonTitle:@"OK"
                                             otherButtonTitles:nil];
     [message show];
-    [self.doodleView setPathColor:[UIColor redColor]];
+    //[self.doodleView setPathColor:[UIColor redColor]];
+    [self.doodleView redArray];
 }
 
 
@@ -98,7 +99,7 @@
 #pragma mark - Shake
 /*******************************************************************************
  * @method      <# method #>
- * @abstract    Let the view controller respond to motion events
+ * @abstract
  * @description <# description #>
  *******************************************************************************/
 - (BOOL)canBecomeFirstResponder {
@@ -132,7 +133,7 @@
 
 -(IBAction)buttonClicked:(id)sender
 {
-    UIActionSheet *info = [[UIActionSheet alloc] initWithTitle:@"Instructions: Trace the circle as best as you can! Shake to erase."
+    UIActionSheet *info = [[UIActionSheet alloc] initWithTitle:@"Instructions: Trace the circle as best as you can! Shake to erase & take a snapshot!"
                                                       delegate:nil
                                              cancelButtonTitle:@"Ok"
                                         destructiveButtonTitle:nil

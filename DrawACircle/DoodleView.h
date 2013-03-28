@@ -14,10 +14,13 @@
 @property (assign) CGPoint firstTouch;
 @property (assign) CGPoint lastTouch;
 @property (strong, nonatomic) UIBezierPath *path;
-@property (strong, nonatomic) NSMutableArray *paths;
-@property (strong, nonatomic) UIColor *pathColor;
+@property (strong, nonatomic) NSMutableArray *pathsBlue;
+@property (strong, nonatomic) NSMutableArray *pathsRed;
+//@property (strong, nonatomic) UIColor *pathColor;
 
 
 - (void) clear;
+
+- (void) redArray;
 
 @end

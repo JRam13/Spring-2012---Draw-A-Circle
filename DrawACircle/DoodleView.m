@@ -8,13 +8,14 @@
 
 #import "DoodleView.h"
 #import "CircleGestureRecognizer.h"
+#import "ViewController.h"
 
 @implementation DoodleView
 @synthesize firstTouch,lastTouch;
 @synthesize path;
-@synthesize pathColor;
+//@synthesize pathColor;
 
-bool ended;
+//bool ended;
 
 
 
@@ -25,14 +26,17 @@ bool ended;
  *******************************************************************************/
 - (id)initWithFrame:(CGRect)frame
 {
+    
+    
     NSLog(@"initWithFrame");
     self = [super initWithFrame:frame];
     if (self) {
         self.multipleTouchEnabled = NO;
         self.backgroundColor = [UIColor whiteColor];
     }
-    _paths = [[NSMutableArray alloc] init];
-     pathColor = [UIColor blueColor];
+    _pathsBlue = [[NSMutableArray alloc] init];
+    _pathsRed = [[NSMutableArray alloc] init];
+    //pathColor = [UIColor blueColor];
     
     
     return self;
@@ -48,6 +52,7 @@ bool ended;
  *******************************************************************************/
 - (void) touchesBegan:(NSSet *) touches withEvent:(UIEvent *) event
 {
+    
     NSLog(@"TouchesBegan");
 	path = [UIBezierPath bezierPath];	
 	path.lineWidth = 15.0f;
@@ -83,12 +88,17 @@ bool ended;
 	UITouch *touch = [touches anyObject];
 	[path addLineToPoint:[touch locationInView:self]];
 	[self setNeedsDisplay];
-    ended = YES;
+    //ended = YES;
     
-    [_paths addObject:path];
+    [_pathsBlue addObject:path];
 
     
 
+}
+
+-(void) redArray
+{
+    [_pathsRed addObject:_pathsBlue.lastObject];
 }
 
 /*******************************************************************************
@@ -114,7 +124,8 @@ bool ended;
     NSLog(@"Clear");
     [path removeAllPoints];
     [self setNeedsDisplay];
-    [_paths removeAllObjects];
+    [_pathsBlue removeAllObjects];
+    [_pathsRed removeAllObjects];
     
     
     
@@ -140,13 +151,26 @@ bool ended;
 {
     
     NSLog(@"DrawRect");
-	[pathColor set];
+    [[UIColor blueColor] set];
     [path stroke];
-    for (UIBezierPath* p in _paths){
-        [pathColor set];
+    
+    
+    //draw array of blue
+    for (UIBezierPath* p in _pathsBlue){
+        [[UIColor blueColor] set];
         [p stroke];
     }
     
-    pathColor = [UIColor blueColor];
+    //pathColor = [UIColor blueColor];
+    //[pathColor set];
+    
+    //draw array of red
+    for (UIBezierPath* p in _pathsRed){
+        [[UIColor redColor] set];
+        [p stroke];
+        
+        
+        
+    }
 }
 @end
